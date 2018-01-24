@@ -37,13 +37,13 @@
     if  (response.status ==='connected')
     {
 
-      console.log('YAY');
+      console.log('Connected');
       console.log(response);
       getPage();
       //location.href = "fill-up_page.html";
     }
     else{
-      console.log('nope');
+      console.log('Not Connected');
     }
   }
 
@@ -58,7 +58,7 @@ function getPage()
 {
   console.log('aa');
    FB.api('/me/accounts', function (response){
-    console.log('aaaaa',response);
+    console.log('pages',response);
    });
 }
 
