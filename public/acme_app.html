@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		ACME Company
+	</title>
+   <link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '140061199997196',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+      
+      FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  function statusChangeCallback(response)
+  {
+    if  (response.status ==='connected')
+    {
+
+      console.log('YAY');
+      console.log(response);
+      getPage();
+      //location.href = "fill-up_page.html";
+    }
+    else{
+      console.log('nope');
+    }
+  }
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+}
+
+function getPage()
+{
+  console.log('aa');
+   FB.api('/me/accounts', function (response){
+    console.log('aaaaa',response);
+   });
+}
+
+function postpage(){
+  console.log('clicked');
+ FB.api(
+    "/370721373035349/feed",
+    "POST",
+    {
+        "message": "This is a test message"
+    },
+    function (response) {
+      console.log('post',response);
+      if (response && !response.error) {
+        console.log('post',response);
+      }
+    }
+);
+}
+
+</script>
+
+	<div class="row center">
+        <div class="col s12" style="margin-top: 5%;">
+          <div class="card #ffffff white z-depth-3">
+            <div class="card-content">
+              <div class="section"></div>
+<div class="section"></div>
+<div class="section"></div>
+              <span class="card-title">WELCOME TO ACME COMPANY</span>
+              <p>We provide what you need.</p>
+            </div>
+            <div class="section"></div>
+
+             <fb:login-button 
+                scope="public_profile,email,manage_pages,publish_pages"
+                onlogin="checkLoginState();">
+              </fb:login-button>
+
+              <button class = postpage type= button onclick = "postpage()"> post </button>
+
+         <div class="section"></div>
+         <div class="section"></div>
+<div class="section"></div>
+<div class="section"></div>
+        
+          </div>
+        </div>
+      </div>
+            
+
+</body>
+</html>

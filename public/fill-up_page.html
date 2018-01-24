@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ACME Company</title>
+<link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+</style>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '140061199997196',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+      
+      FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  function logout()
+  {
+    FB.logout(function(response){
+      location.href = "acme_app.html";
+    });
+  }
+</script>
+</head>
+<body>
+
+
+
+<div class="container"> 
+  <form>
+
+    <label for="country">Pick a Page</label>
+    <select id="country" name="country">
+      <option value="australia">wew</option>
+      <option value="canada">wew1</option>
+      <option value="usa">wew2</option>
+    </select>
+
+
+
+  <textarea></textarea>
+
+<form action="#">
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" multiple>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload Image">
+      </div>
+    </div>
+  </form>
+
+    <label for="fname">Page's Private Reply</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Page's comment Reply</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    
+  
+    <input type="submit" value="post">
+  </form>
+  <button type = button class = logout onclick = "logout();"> LOGOUT </button>
+</div>
+
+</body>
+</html>
+
