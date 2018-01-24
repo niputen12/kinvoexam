@@ -49,6 +49,7 @@
 
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
+    console.log('loginstate:',response);
     statusChangeCallback(response);
   });
 
@@ -56,7 +57,7 @@ function checkLoginState() {
 
 function getPage()
 {
-  console.log('aa');
+  console.log('pages retrieved');
    FB.api('/me/accounts', function (response){
     console.log('pages',response);
    });
@@ -68,7 +69,7 @@ function postpage(){
     "/370721373035349/feed",
     "POST",
     {
-        "message": "This is a test message"
+        "message": "KINVO TEST MESSAGE"
     },
     function (response) {
       console.log('post',response);
@@ -77,6 +78,20 @@ function postpage(){
       }
     }
 );
+}
+
+function postToPage() {
+    var page_id = '370721373035349';
+    FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+        if(resp.access_token) {
+            FB.api('/' + page_id + '/feed',
+                'post',
+                { message: "Kinvo test Message", access_token: resp.access_token }
+                ,function(response) {
+                    console.log('postedToPage',response);
+            });
+        }
+    });
 }
 
 </script>
@@ -94,11 +109,11 @@ function postpage(){
             <div class="section"></div>
 
              <fb:login-button 
-                scope="public_profile,email,manage_pages,publish_pages"
+                scope="public_profile,email,manage_pages,publish_pages,publish_actions"
                 onlogin="checkLoginState();">
               </fb:login-button>
 
-              <button class = postpage type= button onclick = "postpage()"> post </button>
+              <button class = postpage type= button onclick = "postToPage()"> post </button>
 
          <div class="section"></div>
          <div class="section"></div>
