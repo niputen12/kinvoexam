@@ -37,8 +37,7 @@
     if  (response.status ==='connected')
     {
 
-      console.log('Connected');
-      console.log(response);
+      console.log('Connected',response);     
       getPage();
       //location.href = "fill-up_page.html";
     }
@@ -82,17 +81,53 @@ function postpage(){
 
 function postToPage() {
     var page_id = '370721373035349';
-    FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
-        if(resp.access_token) {
-            FB.api('/' + page_id + '/feed',
-                'post',
-                { message: "Kinvo test Message", access_token: resp.access_token }
-                ,function(response) {
-                    console.log('postedToPage',response);
-            });
-        }
-    });
+    var pic = document.getElementById('img').value;
+    console.log('dis is da image',pic);
+    // FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+    //     if(resp.access_token) {
+    //         FB.api('/' + page_id + '/feed',
+    //             'post',
+    //             { message: "Kinvo test Message", access_token: resp.access_token }
+    //             ,function(response) {
+    //                 console.log('postedToPage',response);
+    //         });
+    //     }
+    // });
+
+    //  FB.api('/' + page_id+'/photos', {fields: 'access_token'}, function(resp) {
+    //     if(resp.access_token) {
+    //         FB.api('/' + page_id+'/photos'+'/feed',
+    //             'post',
+    //             { message: "Kinvo test Message", 
+    //             access_token: resp.access_token,
+    //             url: pic 
+    //           }
+    //             ,function(response) {
+    //                 console.log('postedToPage',response);
+    //         });
+    //     }
+    // });
+     // FB.api(
+                
+     //            '/'+page_id+'/photos',
+     //            'POST',
+     //            {
+     //                'access_token': ,
+     //                'message': 'Beer Description',
+     //                'url': pic
+     //            },
+     //            function (response) {
+     //              if (response && !response.error) {
+     //                /* handle the result */
+     //                console.log('success imageg posting',response);
+     //              } else {
+     //                console.log('error img posting:',response);
+     //              }
+     //            }
+     //        );              
 }
+
+
 
 </script>
 
@@ -114,6 +149,12 @@ function postToPage() {
               </fb:login-button>
 
               <button class = postpage type= button onclick = "postToPage()"> post </button>
+
+               <div class="file-path-wrapper">
+                
+              </div>
+
+               <input type = file id=img>
 
          <div class="section"></div>
          <div class="section"></div>
