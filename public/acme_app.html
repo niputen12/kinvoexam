@@ -18,7 +18,11 @@
 
   </style>
 	<title>
+<<<<<<< HEAD
 		ACME Company
+=======
+		ACME COMPANY
+>>>>>>> 4722c1ec6e70d392fb0bdab124d40b9515dfe00e
 	</title>
         <link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -106,23 +110,55 @@ function getPage()
    });
 }
 
-function postpage(){
-  console.log('clicked');
- FB.api(
-    "/370721373035349/feed",
+// function postpage(){
+//   console.log('clicked');
+//  FB.api(
+//     "/370721373035349/feed",
+//     "POST",
+//     {
+//         "message": "KINVO TEST MESSAGE"
+//     },
+//     function (response) {
+//       console.log('post',response);
+//       if (response && !response.error) {
+//         console.log('post',response);
+//       }
+//     }
+// );
+// }
+
+function postToPage() {
+    var page_id = '370721373035349';
+   
+    FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+        if(resp.access_token) {
+            FB.api('/' + page_id + '/feed',
+                'post',
+                { message: "Kinvo NEW Message", access_token: resp.access_token }
+                ,function(response) {
+                    console.log('postedToPage',response);
+            });
+           
+        }
+    FB.api(
+    "/370721373035349_1525595267547948/private_replies",
     "POST",
     {
-        "message": "KINVO TEST MESSAGE"
+      id: '1525595267547948_1525595737547901',
+      message: 'test',
+      access_token: resp.access_token
+
     },
     function (response) {
-      console.log('post',response);
       if (response && !response.error) {
-        console.log('post',response);
+        console.log('pm' , response);
+      }else {
+        console.log('pm err', response);
       }
     }
 );
-}
 
+<<<<<<< HEAD
 function postToPage() {
     var page_id = '370721373035349';
     FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
@@ -136,10 +172,93 @@ function postToPage() {
         }
     });
 }
+=======
+    });
+  }
+
+    function pageposts()
+    {
+          FB.api(
+        "/370721373035349/posts",
+        function (response) {
+          if (response && !response.error) {
+            console.log('posts',response);
+          }
+          else{
+            console.log('err posts',response);
+          }
+        }
+    );
+
+          FB.api(
+    "/370721373035349/feed",
+    function (response) {
+      if (response && !response.error) {
+        console.log('posts ID',response);
+      }else {
+        console.log('err posts ID', response);
+      }
+    }
+);
+
+
+          FB.api(
+    "/370721373035349_1525595267547948/comments",
+    {
+        "summary": true,
+        "filter": "toplevel"
+    },
+    function (response) {
+      if (response && !response.error) {
+        console.log('getcomments',response)
+      }
+      else {
+        console.log('err getcomments',response)
+      
+      }
+    }
+);
+  
+    }
+
+    //  FB.api('/' + page_id+'/photos', {fields: 'access_token'}, function(resp) {
+    //     if(resp.access_token) {
+    //         FB.api('/' + page_id+'/photos'+'/feed',
+    //             'post',
+    //             { message: "Kinvo test Message", 
+    //             access_token: resp.access_token,
+    //             url: pic 
+    //           }
+    //             ,function(response) {
+    //                 console.log('postedToPage',response);
+    //         });
+    //     }
+    // });
+     // FB.api(
+                
+//                 '/'+page_id+'/photos',
+//                 'POST',
+//                 {
+//                     'access_token': ,
+//                     'message': 'Beer Description',
+//                     'url': pic
+//                 },
+//                 function (response) {
+//                   if (response && !response.error) {
+//                     /* handle the result */
+//                     console.log('success imageg posting',response);
+//                   } else {
+//                     console.log('error img posting:',response);
+//                   }
+//                 }
+//             );              
+// }
+>>>>>>> 4722c1ec6e70d392fb0bdab124d40b9515dfe00e
 
 </script>
 
 
+<<<<<<< HEAD
 <div class="slider">
     <ul class=" #ffffff white" >
       <li>
@@ -229,6 +348,18 @@ function postToPage() {
           <label for="email">Email</label>
         </div>
       </div>
+=======
+             <fb:login-button 
+                scope="public_profile,email,manage_pages,publish_pages,publish_actions,read_page_mailboxes"
+                onlogin="checkLoginState();">
+              </fb:login-button>
+
+              <button class = postpage type= button onclick = "postToPage()"> post </button>
+               <button class = getposts type= button onclick = "pageposts()"> post </button>
+
+
+          
+>>>>>>> 4722c1ec6e70d392fb0bdab124d40b9515dfe00e
 
       <div class="row">
         <div class="input-field col l6 offset-l3 m12 s12">
