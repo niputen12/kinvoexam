@@ -6,6 +6,7 @@
   </title>
         <style>
 
+
 .Bottom {
           bottom: 0;
           width:100%;
@@ -125,11 +126,8 @@
 
 <div class="row center-align">
           <div class="input-field col l12 m12 s12">
-    <select>
-      <option value="" disabled selected>Pick a page</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
+    <select class = "pages">
+       
     </select>
     <label style="font-size: 15px;" class="black-text">Choose Page</label>
   </div>
@@ -139,64 +137,41 @@
     <form class="col l12 m12 s12">
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <textarea id="textarea1" class="materialize-textarea caption"></textarea>
           <label for="textarea1" class="black-text">Caption</label>
         </div>
       </div>
     </form>
   </div>
-        
-
-  
-
-              <div class="row center-align" style="margin-top: -30px;">
+      <div class="row center-align" style="margin-top: -30px;">
         <div class="input-field col l12 m12 s12 ">
            
   <div class="chips chips-placeholder"></div>
 <label for="textarea1" class="black-text">Tag</label>
         </div>
-      </div>
-
-       
+      </div>       
       <div class="row">
         <div class="input-field col l12 m12 s12">
           <input id="reply" type="text" class="validate">
           <label for="reply " class="black-text">Page's Private Reply</label>
         </div>
       </div>
-
       <div class="row">
         <div class="input-field col l12 m12 s12">
           <input id="comment" type="text" class="validate">
           <label for="comment" class="black-text">Page's Comment Reply</label>
         </div>
       </div>
-
-      <button class="btn waves-effect waves-light col l12 m12 s12 " type="button" name="action">Send
+      <button class="btn waves-effect waves-light col l12 m12 s12 send" type="button" name="action">Send
               
             </button>
-            </div>
-            
-  
-            
+            </div>           
          <div class="section"></div>
-         <div class="section"></div>
-
-        
+         <div class="section"></div>        
           </div>
       
         </div>
-      </div>
-
-      
-
-
-
-
-
-
-
-             
+      </div>         
   <footer id="footer"  class="page-footer  N/A transparent Bottom ">
   <div class="footer-copyright #455a64 blue-grey darken-2">
     <div class="container center white-text" style="opacity: 0.3; font-size: 0.9rem;">
@@ -215,8 +190,53 @@
 </html>
 <script type="text/javascript">
     $(document).ready(function() {
-    $('select').material_select();
+    //$('select').material_select();
+
   });
+</script>
+<script>
+  $('.send').click(function(){
+
+      var page_id = $('.pages option:selected').val();
+      var message = $('.caption').val();
+   
+    FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+        if(resp.access_token) {
+            FB.api('/' + page_id + '/feed',
+                'post',
+                { message: message, access_token: resp.access_token }
+                ,function(response) {
+                    console.log('postedToPage',response);
+            });
+           
+        }
+//     FB.api(
+//     "/370721373035349_1525595267547948/private_replies",
+//     "POST",
+//     {
+//       id: '1525595267547948_1525595737547901',
+//       message: 'test',
+//       access_token: resp.access_token
+
+//     },
+//     function (response) {
+//       if (response && !response.error) {
+//         console.log('pm' , response);
+//       }else {
+//         console.log('pm err', response);
+//       }
+//     }
+// );
+
+    });
+  
+
+  })
+  $('.logout').click(function(){
+    FB.logout(function(response){
+      location.href= "acme_homepage.html";
+    })
+  })
 </script>
 <script>
   window.fbAsyncInit = function() {
@@ -241,6 +261,15 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    console.log('loginstate:',response);
+    statusChangeCallback(response);
+  });
+
+}
+
   function statusChangeCallback(response)
   {
     if  (response.status ==='connected')
@@ -258,22 +287,35 @@
     }
   }
 
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    console.log('loginstate:',response);
-    statusChangeCallback(response);
-  });
-
-}
-
 function getPage()
 {
+ 
+
+  var opt = false;
+
   console.log('pages retrieved');
    FB.api('/me/accounts', function (response){
-    console.log('pages',response);
+    console.log('pages',response.data);
+
+    for(i=0 ; i < response.data.length ; i++){
+        var newOption = $('<option>');
+      newOption.attr('value', response.data[i].id).text(response.data[i].name);
+      console.log('pahina',response.data[i].name);     
+     // opt += "<option value='" + response.data[i].id + "'>" + response.data[i].name + "</option>";
+      $('.pages').append(newOption);  
+      }
+       //$('.pages').append(newOption);  
+      console.log('wew'); 
+      $('.pages').material_select();
+       // bobomaterialize();
+
    });
 }
+// function bobomaterialize(){
+   
+//       $('select').material_select();
 
+// }
 // function postpage(){
 //   console.log('clicked');
 //  FB.api(
@@ -291,39 +333,40 @@ function getPage()
 // );
 // }
 
-function postToPage() {
-    var page_id = '370721373035349';
-   
-    FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
-        if(resp.access_token) {
-            FB.api('/' + page_id + '/feed',
-                'post',
-                { message: "Kinvo NEW Message", access_token: resp.access_token }
-                ,function(response) {
-                    console.log('postedToPage',response);
-            });
+// function postToPage() {
+//     var page_id = '370721373035349';
+//     var message = 
+//     FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+//         if(resp.access_token) {
+//             FB.api('/' + page_id + '/feed',
+//                 'post',
+//                 { message: "Kinvo NEW Message", access_token: resp.access_token }
+//                 ,function(response) {
+//                     console.log('postedToPage',response);
+//             });
            
-        }
-    FB.api(
-    "/370721373035349_1525595267547948/private_replies",
-    "POST",
-    {
-      id: '1525595267547948_1525595737547901',
-      message: 'test',
-      access_token: resp.access_token
+//         }
+//     FB.api(
+//     "/370721373035349_1525595267547948/private_replies",
+//     "POST",
+//     {
+//       id: '1525595267547948_1525595737547901',
+//       message: 'test',
+//       access_token: resp.access_token
 
-    },
-    function (response) {
-      if (response && !response.error) {
-        console.log('pm' , response);
-      }else {
-        console.log('pm err', response);
-      }
-    }
-);
+//     },
+//     function (response) {
+//       if (response && !response.error) {
+//         console.log('pm' , response);
+//       }else {
+//         console.log('pm err', response);
+//       }
+//     }
+// );
 
-    });
-  }
+//     });
+//   }
+
 
     function pageposts()
     {
@@ -348,6 +391,7 @@ function postToPage() {
         console.log('err posts ID', response);
       }
     }
+
 );
 
 
