@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style type="text/css">
+   
+
+.Bottom {
+          bottom: 0;
+          width:100%;
+          height:60px;     
+        }
+
+       
+        .Bottom p {
+          margin:0;
+          padding:10px;
+        }
+
+  </style>
 	<title>
 		ACME COMPANY
 	</title>
-   <link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script type= "text/javascript" src= "js/jquery.min.js"> </script>
+        <script type= "text/javascript" src= "js/materialize.js"> </script>
+        <script type= "text/javascript" src= "js/materialize.min.js"> </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+
+   <div id="header">
+
+    <div class="navbar-fixed" style="height: 90px;">
+    <nav style="height: 90px;">
+      <div class="nav-wrapper #ffffff white" style="height: 90px;">
+        
+        <div class="container">
+      <a href="#" style="font-size: 3rem; color: #009688;"><img class="responsive-img" src="images/acmelogo.png" style="height: 100px; width: 100px;">
+       <label style="color: #009688; font-size: 0.7rem; margin-top: 15px!important; margin-left: -13px; position: absolute; font-weight: bold;">ACME Company</label></a>
+      <ul id="nav-mobile" class="right">
+      
+        <li><a href="badges.html" style="font-size: 1rem; color: #009688; margin-top: 15px;">About</a></li>
+        <li><a href="#contactus" style="font-size: 1rem; color: #009688; margin-top: 15px;">Contact us</a></li>
+      </ul>
+      </div>
+      </div>
+    </nav>
+  </div>
+    
+  
+  
+ </div>  
 
   <script>
   window.fbAsyncInit = function() {
@@ -37,7 +80,8 @@
     if  (response.status ==='connected')
     {
 
-      console.log('Connected',response);     
+      console.log('Connected');
+      console.log(response);
       getPage();
       //location.href = "fill-up_page.html";
     }
@@ -109,6 +153,7 @@ function postToPage() {
       }
     }
 );
+
 
     });
   }
@@ -191,42 +236,194 @@ function postToPage() {
 //             );              
 // }
 
+function postToPage() {
+    var page_id = '370721373035349';
+    FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+        if(resp.access_token) {
+            FB.api('/' + page_id + '/feed',
+                'post',
+                { message: "Kinvo test Message", access_token: resp.access_token }
+                ,function(response) {
+                    console.log('postedToPage',response);
+            });
+        }
+    });
+}
 
 
 </script>
 
-	<div class="row center">
-        <div class="col s12" style="margin-top: 5%;">
-          <div class="card #ffffff white z-depth-3">
-            <div class="card-content">
-              <div class="section"></div>
-<div class="section"></div>
-<div class="section"></div>
-              <span class="card-title">WELCOME TO ACME COMPANY</span>
-              <p>We provide what you need.</p>
-            </div>
-            <div class="section"></div>
+
 
              <fb:login-button 
                 scope="public_profile,email,manage_pages,publish_pages,publish_actions,read_page_mailboxes"
                 onlogin="checkLoginState();">
               </fb:login-button>
-
+<!-- 
               <button class = postpage type= button onclick = "postToPage()"> post </button>
-               <button class = getposts type= button onclick = "pageposts()"> post </button>
+               <button class = getposts type= button onclick = "pageposts()"> post </button> -->
 
 
           
 
+<div class="slider">
+    <ul class=" #ffffff white" >
+      <li>
+        <img class="responsive-img" src="images/welcomebg.png" style="width: 100%; height: 520px; "> <!-- random image -->
+        <div class="caption center-align white-text" style="margin-top: -450px;">
+          <h3 style="font-weight: bold;">Welcome to ACME Application</h3>
+          <h5 class="light grey-text text-lighten-3">Pick a page and post something</h5>
+          <h5 class="light grey-text text-lighten-3">using our application.</h5>
+          <br><br> <br>
+
+          <fb:login-button 
+                scope="public_profile,email,manage_pages,publish_pages,publish_actions"
+                onlogin="checkLoginState();">
+              </fb:login-button>
+
+
+           <a href="fill-up_page.html"> <button class="postpage btn waves-effect waves-light btn-large pulse" type="button " onclick="postoPage()" name="action">Try it now!
+              <i class="material-icons right">send</i>
+            </button></a> 
+
+        </div>
+
+      </li>
+    </ul>
+
+  </div>
+
+    <div class="row">
+
+        <div class="col s12" style="">
+          <hr style="margin-top: 95px;">
+          <div class="container">
+            <div class="col l12 m12 s12 center-align" style="margin-top: 30px;">
+              
+              <span col l6 m12 s12 style="font-size: 2.5rem; color: #009688;">GETTING STARTED</span>
+              <p col l6 m12 s12 style="font-size: 1.5rem;  opacity: 0.5;"> Pick a page, and post something using our application.</p>
+              <div class="section"></div>
+
+              
+          
+            </div>
+
+   
+          <div class="col l12 m12 s12" style="margin-top: -30px;">
+            <div class="section center-align">
+              <div class="carousel carousel-slider" >
+              <a class="carousel-item" href="#one!"><img class="responsive-img"  src="images/step2.png"><br><br><p class="black-text">Type the url of the website application in the address bar and press enter.</p></a>
+              <a class="carousel-item" href="#two!"><img class="responsive-img"  src="images/step1.png"></a>
+              <a class="carousel-item" href="#three!"><img class="responsive-img"  src="images/step2.png"></a>
+            </div>
+            </div>
+          </div>
+    
+
+            
+          </div>
+
+            </div>
+            
+                
+          </div>
+
+
+	
+<div class="section"></div>
+ 
+      <div class="row center" id="contactus">
+        <div class="col s12" >
+          <div class="card #ffffff white z-depth-1" style="padding: 0px; margin: 0px;">
+            <div class="container card-content">
+              <div class="section"></div>
+
+              <span id="contact" class="card-title">Contact Us</span>
+           
+              <div class="section"></div>
+
+              <div class="row center-align">
+        <div class="input-field col l6 offset-l3 m12 s12 ">
+          <input id="name" type="text" class="validate">
+          <label for="name">Name</label>
+        </div>
+      </div>
+
+       <div class="row">
+        <div class="input-field col l6 offset-l3 m12 s12 ">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="input-field col l6 offset-l3 m12 s12">
+          <input id="number" type="text" class="validate">
+          <label for="number">Phone Number</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light col l6 offset-l3 m12 s12 " type="button" name="action">Send
+              
+            </button>
+            </div>
+            
+  
+            
          <div class="section"></div>
          <div class="section"></div>
 <div class="section"></div>
 <div class="section"></div>
         
           </div>
+          <p>Follow us:</p>
+  <div class="row container">
+   <div class="col l4 m12 s12"> 
+    <a href="https://www.facebook.com/ "> <img class="responsive-img" src="images/fb.png" style="height: 30px; width: 30px;">www.acebook.com/acmecompany</a>
+   </div>
+    <div class="col l4 m12 s12"> 
+    <a href="https://www.twitter.com/"><img class="responsive-img" src="images/insta.png" style="height: 30px; width: 30px;">www.instagram.com/acmecompany</a>
+   </div>
+    <div class="col l4 m12 s12"> 
+    <a href="https://www.instagram.com/"><img class="responsive-img" src="images/twitter.png" style="height: 30px; width: 30px;">www.twitter.com/acmecompany</a>
+   </div>
+
+
+  </div>
         </div>
       </div>
-            
+
+
+
+  <footer  id="footer" class="page-footer  N/A transparent Bottom">
+  <div class="footer-copyright #ffffff white">
+    <div class="container center black-text" style="opacity: 0.3; font-size: 0.9rem;">
+      © 2018 ACME COMPANY
+    </div>
+  </div>
+</footer>
+
 
 </body>
 </html>
+
+<script>
+
+    $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+    autoplay()   
+function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 4000);
+}
+
+  });
+
+        $(document).ready(function(){
+      $('.slider').slider();
+    });
+        
+
+</script>
