@@ -43,7 +43,9 @@
         <script type= "text/javascript" src= "js/jquery.min.js"> </script>
         <script type= "text/javascript" src= "js/materialize.js"> </script>
         <script type= "text/javascript" src= "js/materialize.min.js"> </script>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
      
 
 </head>
@@ -143,28 +145,40 @@
       </div>
     </form>
   </div>
-      <div class="row center-align" style="margin-top: -30px;">
+      <!-- <div class="row center-align" style="margin-top: -30px;">
         <div class="input-field col l12 m12 s12 ">
            
-  <div class="chips chips-placeholder"></div>
+  <div class="chips chips-placeholder" id="wtfchips"></div>
 <label for="textarea1" class="black-text">Tag</label>
         </div>
-      </div>       
+      </div>   -->
+          <div class="row" style="margin-top: -25px;">
+    <form class="col l12 m12 s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea2" class="materialize-textarea tags"></textarea>
+          <label for="textarea2" class="black-text">Tag</label>
+        </div>
+      </div>
+    </form>
+  </div>
+
       <div class="row">
         <div class="input-field col l12 m12 s12">
-          <input id="reply" type="text" class="validate">
+          <input id="reply" type="text" class="validate pmReply">
           <label for="reply " class="black-text">Page's Private Reply</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col l12 m12 s12">
-          <input id="comment" type="text" class="validate">
+          <input id="comment" type="text" class="validate reply">
           <label for="comment" class="black-text">Page's Comment Reply</label>
         </div>
       </div>
       <button class="btn waves-effect waves-light col l12 m12 s12 send" type="button" name="action">Send
               
             </button>
+             <button class="btn waves-effect waves-light col l12 m12 s12 test" type="button" name="action">test
             </div>           
          <div class="section"></div>
          <div class="section"></div>        
@@ -179,13 +193,6 @@
     </div>
   </div>
 </footer>
-
-            
-  
-
-
-
-
 </body>
 </html>
 <script type="text/javascript">
@@ -194,6 +201,138 @@
 
   });
 </script>
+<script>
+
+  
+  setInterval(getPost, 10000)
+  var counter ;
+  function getPost()
+  {
+    var page_id = $('.pages option:selected').val();
+    $.get('http://localhost:3000/getPosts', function(responsee){
+        counter = Object.keys(responsee.data).length;
+          
+       for(i = 0 ; i < counter ; i++)
+          {
+             var pid = responsee.data[i].id;
+             var done = responsee.data[i].done;
+             var message = responsee.data[i].reply;
+             var msg = responsee.data[i].tags;
+             var oid = responsee.data[i].postId;
+             var pmmsg = responsee.data[i].pmReply;
+               FB.api(
+                    "/"+responsee.data[i].postId+"/comments",
+                    {
+                        "summary": true
+                        
+                    },
+                    function (response) {
+                      //console.log('wat', response);
+                      if (response && !response.error) {
+
+                        for ( j = 0 ; j < response.data.length ; j++)
+                        {
+                            console.log('mensahe',response.data[j].message)
+                          if(response.data[j].message === msg)
+                          {
+                             var id = response.data[j].id
+                            
+
+                             FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+                              if(resp.access_token) {
+                           
+                                  console.log('wat',id);
+
+                               FB.api('/'+id+'/comments', 
+                                'post', { 'message' : message,
+                                access_token: resp.access_token }, function(res){
+                                  console.log('msg',res);
+                                     $.ajax({
+                                          url: 'http://localhost:3000/updatePosts/'+pid,
+                                          type: 'PATCH',
+                                          data: {done: 'true',       _method: "PATCH"},
+                                          success: function(res) {
+                                        console.log('huwat',res);
+                                          }
+                                  });
+                                    //   FB.api(
+                                    //     "/"+id+"/private_replies",
+                                    //     "POST",
+                                    //     {
+                                    //       id: id,
+                                    //       message: pmmsg,
+                                    //       access_token: resp.access_token
+                                    //     },
+                                    //     function (response) {
+                                    //       if (response && !response.error) {
+                                    //         console.log('is this for real?');
+                                    //       }
+                                    //       else{
+                                    //         console.log(response);
+                                    //       }
+                                    //     }
+                                    // );
+                                }); 
+                 
+                                      }
+                                      else{
+                                        console.log(resp);
+                                      }
+                                  });
+                          }
+                           
+                        }
+
+                          // var count = Object.keys(response.data).length;
+                          // for (j = 0; j <count ; j++)
+                          // {
+                          //   if(response.data[j].message === msg)
+                          //   {    
+                      
+                          //      FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+                          //         console.log('before tragedy' ,j)
+                                 
+                          //      if(resp.access_token && response.data[j].id !== null) {
+                          //          console.log('WOW GALENG',response.data[j].id);
+                          //         FB.api('/'+response.data[j].id+'/comments', 
+                          //         'post', { 'message' : 'test',
+                          //         access_token: resp.access_token }, function(res){ 
+                          //         console.log('OK?',res);                                
+                          //         }); 
+
+                          //               }
+                          //               else{
+                          //                 console.log(resp);
+                          //               }                                         
+                          //     });                                     
+                         
+                          //   }
+                          // }
+
+
+                        
+
+                      
+
+
+
+                        
+                          }
+                      else {
+                        console.log('err getcomments',response)
+                      
+                      }
+                    }
+                );
+
+          }
+           console.log('got it',responsee);
+         
+    });
+  }
+
+</script>
+
 <script>
   $('.send').click(function(){
 
@@ -206,7 +345,36 @@
                 'post',
                 { message: message, access_token: resp.access_token }
                 ,function(response) {
-                    console.log('postedToPage',response);
+
+                  if(response && !response.error)
+                  {
+                     console.log('postedToPage',response);
+                    $.post('http://localhost:3000/savePosts', {
+                      postId: response.id,
+                      tags: $('.tags').val(),
+                      reply: $('.reply').val(),
+                      pmReply:$('.pmReply').val(),
+                      done: "false"
+
+                    }).done(function (res){
+                      console.log(res);
+                    });
+                  }
+                  else{
+                    alert('Error');
+                  }
+                   
+                    // var asd = 2;
+                    // if(asd ==1 )
+                    // {
+                    //    FB.api('/'+response.id+'/comments', 
+                    //   'post', { 'message' : 'test',
+                    //   access_token: resp.access_token }, function(res){
+                    //     console.log('msg',res);
+                    //   }); 
+                    // }
+                  
+                   
             });
            
         }
@@ -237,6 +405,44 @@
       location.href= "acme_homepage.html";
     })
   })
+
+  $('.test').click(function(){
+     var page_id = $('.pages option:selected').val();
+      FB.api(
+                    "/370721373035349_1526601480780660/comments",
+                    {
+                        "summary": true,
+                        "filter": "toplevel"
+                    },
+                    function (response) {
+                      if (response && !response.error) {
+                          FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
+                           if(resp.access_token) {
+                              console.log('getcomments',response)
+
+                         FB.api('/'+response.data[0].id+'/comments', 
+                          'post', { 'message' : 'test',
+                          access_token: resp.access_token }, function(res){
+                            console.log('msg',res);
+                          }); 
+           
+                                }
+                            });
+
+                      
+
+
+
+                      }
+                      else {
+                        console.log('err getcomments',response)
+                      
+                      }
+                    }
+                );
+
+
+  });
 </script>
 <script>
   window.fbAsyncInit = function() {
@@ -395,7 +601,7 @@ function getPage()
 );
 
 
-          FB.api(
+     FB.api(
     "/370721373035349_1525595267547948/comments",
     {
         "summary": true,
