@@ -1,128 +1,225 @@
 <!DOCTYPE html>
 <html>
-<head>
 <title>ACME Company</title>
-<link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script type= "text/javascript" src= "js/jquery.min.js"> </script>
+        <script type= "text/javascript" src= "js/materialize.js"> </script>
+        <script type= "text/javascript" src= "js/materialize.min.js"> </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
 
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+.Bottom {
+          bottom: 0;
+          width:100%;
+          
+        }
 
-input[type=submit]:hover {
-    background-color: #45a049;
-}
+       
+        .Bottom p {
+          margin:0;
+          padding:10px;
+        }
 
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
-}
 
-div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
+ #acount_settings_dropdown{
+  height: 40px!important;
+  width: 40px!important;
+  padding:0 0 0 0;
+  margin-right: 40px;
+  border-radius: 50%;
+
+ }
+ #dropdown-activate1{
+  width: 180px!important;
+  margin-top: 40px!important;
+  position: absolute;
+  padding: 0px;
+
+ }
+
 </style>
+<body class="#eeeeee grey lighten-3">
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '140061199997196',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.11'
-    });
+    <div id="header">
+
+    <div class="navbar-fixed" style="height: 90px;">
+    <nav style="height: 90px;">
+      <div class="nav-wrapper #ffffff white" style="height: 90px;">
+        
+        <div class="container">
+      <a href="#" style="font-size: 3rem; color: #009688;"><img class="responsive-img" src="images/acmelogov4.png" style="height: 90px; width: 150px;">
+   
+    <div class="row" style="margin-top: -100px;">
+            <div class="right">
+              <a class="dropdown-button btn N/A transparent  hoverable show-on-small-only " data-activates="dropdown-activate1" id="acount_settings_dropdown"><img id="acount_settings_dropdown_image" class ="responsive-img circle show-on-med-and-down" src="images/fb.png"></a>
+            </div>
+          
+            <div id="profile-dropdown" class="dropdown-content">
+              <ul  id='dropdown-activate1' style="background-color: #009688;" class='dropdown-content '>
+               
+                <li><a class="white-text logout" ><i class="material-icons">trending_flat</i>Logout</a></li>
+              </ul>
+            </div>
+          </div>
+
+      </div>
+      </div>
+    </nav>
+
+
       
-      FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-      
-  };
+  </div>
+    
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+  
+ </div>  
 
-  function logout()
-  {
-    FB.logout(function(response){
-      location.href = "acme_app.html";
-    });
-  }
-</script>
-</head>
-<body>
+
+        <div class="section"></div>
+        <div class="row center " id="contactus" style="padding:0px 15px 0px 15px;">
+        <div class="col xl7 l12 m12 s12 offset-xl3">
+          <div class="card #ffffff white z-depth-3 " style="padding: 0px; margin: 0px;">
+            <div class="container card-content">
+              <div class="section"></div>
+
+              <span id="contact" class="card-title">Post on Facebook</span>
+           
+              <div class="section"></div>
 
 
 
-<div class="container"> 
-  <form>
-
-    <label for="country">Pick a Page</label>
-    <select id="country" name="country">
-      <option value="australia">wew</option>
-      <option value="canada">wew1</option>
-      <option value="usa">wew2</option>
+      <div class="row center-align">
+          <div class="input-field col l12 m12 s12">
+    <select>
+      <option value="" disabled selected>Pick a page</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
     </select>
+    <label style="font-size: 15px;" class="black-text">Choose Page</label>
+  </div>
+      </div>
 
+       <div class="row" style="margin-top: -25px;">
+    <form class="col l12 m12 s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1" class="black-text">Caption</label>
+        </div>
+      </div>
+    </form>
+  </div>
+        
 
+  
 
-  <textarea></textarea>
+              <div class="row center-align" style="margin-top: -30px;">
+        <div class="input-field col l12 m12 s12 ">
+           
+  <div class="chips chips-placeholder"></div>
+<label for="textarea1" class="black-text">Tag</label>
+        </div>
+      </div>
 
-<form action="#">
+       <div class="row" style="margin-top: -30px;">
+        <div class="input-field col l12 m12 s12 ">
+         <form action="#">
     <div class="file-field input-field">
       <div class="btn">
-        <span>File</span>
-        <input type="file" multiple>
+        <span>Image</span>
+        <input type="file">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload Image">
+        <input class="file-path validate" type="text">
       </div>
     </div>
   </form>
+        </div>
+      </div>
 
-    <label for="fname">Page's Private Reply</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <input id="reply" type="text" class="validate">
+          <label for="reply " class="black-text">Page's Private Reply</label>
+        </div>
+      </div>
 
-    <label for="lname">Page's comment Reply</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <input id="comment" type="text" class="validate">
+          <label for="comment" class="black-text">Page's Comment Reply</label>
+        </div>
+      </div>
 
-    
+      <button class="btn waves-effect waves-light col l12 m12 s12 " type="button" name="action">Send
+              
+            </button>
+            </div>
+            
   
-    <input type="submit" value="post">
-  </form>
-  <button type = button class = logout onclick = "logout();"> LOGOUT </button>
-</div>
+            
+         <div class="section"></div>
+         <div class="section"></div>
+
+        
+          </div>
+      
+        </div>
+      </div>
+
+      
+
+
+
+
+
+<footer  id="footer" class="page-footer N/A transparent Bottom">
+  <div class="footer-copyright #455a64 blue-grey darken-2">
+    <div class="container center white-text" style="opacity: 0.3; font-size: 0.9rem;">
+       © 2018 ACME COMPANY
+    </div>
+  </div>
+</footer>
+
 
 </body>
 </html>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('select').material_select();
+  });
+
+
+
+  $('#textarea1').trigger('autoresize');
+        
+       
+</script>
+
+ <script type="text/javascript">
+  
+  
+  $('.chips-placeholder').material_chip({
+    placeholder: 'Enter a tag',
+    secondaryPlaceholder: '+Tag',
+  });
+ 
+ </script>
+ <script>
+$('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, 
+      gutter: 0, 
+      belowOrigin: true,
+      alignment: 'left',
+      stopPropagation: false 
+    }
+  );
+
+     
+  
+</script>
