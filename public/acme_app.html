@@ -201,7 +201,7 @@
                         
                     },
                     function (response) {
-                      console.log('wat', response);
+                      //console.log('wat', response);
                       if (response && !response.error) {
                         for ( j = 0 ; j < response.data.length ; j++){
                             //console.log('mensahe',response.data[j].message)
@@ -349,7 +349,7 @@ function checkLoginState() {
     {
       $(".loginfb").hide();
        $(".fillupPage").show();
-      console.log('Connected',response);     
+      //console.log('Connected',response);     
       getPage();     
     }
     else{
@@ -365,7 +365,7 @@ function getPage()
 
   console.log('pages retrieved');
    FB.api('/me/accounts', function (response){
-    console.log('pages',response.data);
+    //console.log('pages',response.data);
 
     for(i=0 ; i < response.data.length ; i++){
         var newOption = $('<option>');
@@ -373,7 +373,7 @@ function getPage()
       console.log('pahina',response.data[i].name);    
       $('.pages').append(newOption);  
       }   
-      console.log('wew'); 
+     // console.log('wew'); 
       $('.pages').material_select();
    });
 }
