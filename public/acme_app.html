@@ -177,14 +177,7 @@
              var msg = responsee.data[i].tags;
              var oid = responsee.data[i].postId;
              var pmmsg = responsee.data[i].pmReply;
-               // $.ajax({
-               //  url: local+'/updatePosts/'+pid,
-               //  type: 'PATCH',
-               //  data: {done: 'false',       _method: "PATCH"},
-               //  success: function(res) {
-               //    //console.log('huwat',res);
-               //  }
-               //  });         
+                    
                FB.api(
                     "/"+responsee.data[i].postId+"/comments",
                     {
