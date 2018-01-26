@@ -178,11 +178,13 @@
 <script> 
   setInterval(getPost, 6000)
   var counter ;
-
+  var local = 'http://localhost:3000';
+  var deploy = 'https://kinvoexam.herokuapp.com';
   function getPost()
   {
+
     var page_id = $('.pages option:selected').val();
-    $.get('https://kinvoexam.herokuapp.com/getPosts', function(responsee){
+    $.get(local+'/getPosts', function(responsee){
         counter = Object.keys(responsee.data).length;
           
        for(i = 0 ; i < counter ; i++)
@@ -193,6 +195,14 @@
              var msg = responsee.data[i].tags;
              var oid = responsee.data[i].postId;
              var pmmsg = responsee.data[i].pmReply;
+               // $.ajax({
+               //  url: local+'/updatePosts/'+pid,
+               //  type: 'PATCH',
+               //  data: {done: 'false',       _method: "PATCH"},
+               //  success: function(res) {
+               //    //console.log('huwat',res);
+               //  }
+               //  });         
                FB.api(
                     "/"+responsee.data[i].postId+"/comments",
                     {
@@ -200,9 +210,8 @@
                         
                     },
                     function (response) {
-                      //console.log('wat', response);
+                      console.log('wat', response);
                       if (response && !response.error) {
-
                         for ( j = 0 ; j < response.data.length ; j++){
                             //console.log('mensahe',response.data[j].message)
                           if(response.data[j].message === msg){
@@ -214,7 +223,7 @@
                                           'post', { 'message' : message,
                                           access_token: resp.access_token }, function(res){
                                            // console.log('msg',res);
-                                             if(done=="false")  {
+                                             if(done=="false" && !res.error)  {
                                                      FB.api(
                                                       "/"+id+"/private_replies",
                                                       "POST",
@@ -234,7 +243,7 @@
                                                   );
                                                }
                                                $.ajax({
-                                                    url: 'https://kinvoexam.herokuapp.com/updatePosts/'+pid,
+                                                    url: local+'/updatePosts/'+pid,
                                                     type: 'PATCH',
                                                     data: {done: 'true',       _method: "PATCH"},
                                                     success: function(res) {
@@ -280,7 +289,7 @@
                   if(response && !response.error)
                   {
                      console.log('postedToPage',response);
-                    $.post('https://kinvoexam.herokuapp.com/savePosts', {
+                    $.post(local+'/savePosts', {
                       postId: response.id,
                       tags: $('.tags').val(),
                       reply: $('.reply').val(),
