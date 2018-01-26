@@ -43,6 +43,8 @@
         <script type= "text/javascript" src= "js/jquery.min.js"> </script>
         <script type= "text/javascript" src= "js/materialize.js"> </script>
         <script type= "text/javascript" src= "js/materialize.min.js"> </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
       </head>
@@ -180,7 +182,7 @@
   function getPost()
   {
     var page_id = $('.pages option:selected').val();
-    $.get('http://localhost:3000/getPosts', function(responsee){
+    $.get('https://kinvoexam.herokuapp.com/getPosts', function(responsee){
         counter = Object.keys(responsee.data).length;
           
        for(i = 0 ; i < counter ; i++)
@@ -232,7 +234,7 @@
                                                   );
                                                }
                                                $.ajax({
-                                                    url: 'http://localhost:3000/updatePosts/'+pid,
+                                                    url: 'https://kinvoexam.herokuapp.com/updatePosts/'+pid,
                                                     type: 'PATCH',
                                                     data: {done: 'true',       _method: "PATCH"},
                                                     success: function(res) {
@@ -278,7 +280,7 @@
                   if(response && !response.error)
                   {
                      console.log('postedToPage',response);
-                    $.post('http://localhost:3000/savePosts', {
+                    $.post('https://kinvoexam.herokuapp.com/savePosts', {
                       postId: response.id,
                       tags: $('.tags').val(),
                       reply: $('.reply').val(),
@@ -287,10 +289,17 @@
 
                     }).done(function (res){
                       console.log(res);
+                      $.alert({
+                        title: 'Alert!',
+                        content: 'Success',
+                    });
                     });
                   }
                   else{
-                    alert('Error');
+                    $.alert({
+                        title: 'Error',
+                        content: 'Check Logs for more details',
+                    });
                   } 
             });
         }
