@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>ACME Company</title>
+        <script src="js/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controller.js"></script>
         <link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type= "text/javascript" src= "js/jquery.min.js"> </script>
@@ -12,18 +15,18 @@
 </head>
 
 <!--BODY -->
-<body class="#eeeeee grey lighten-3"> 
+<body class="#eeeeee grey lighten-3" ng-app="acmeApp"> 
 
   <!--Start of header -->
-  <div id="header">
+  <div ng-controller="headerCtrl">
     <div class="navbar-fixed" style="height: 90px;">
       <nav style="height: 90px;">
         <div class="nav-wrapper #ffffff white" style="height: 90px;">
           <div class="container">
             <a href="#" style="font-size: 3rem; color: #009688;"><img class="responsive-img" src="images/acmelogov4.png" style="height: 90px; width: 150px;">
               <ul id="nav-mobile" class="right">
-                <li><a  href="#modalAbout" class="modal-trigger" style="font-size: 1rem; color: #009688; margin-top: 15px;">About</a></li>
-                <li><a href="#contactus" style="font-size: 1rem; color: #009688; margin-top: 15px;">Contact us</a></li>
+                <li><a  href="#modalAbout" class="modal-trigger" style="font-size: 1rem; color: #009688; margin-top: 15px;">{{navAbout}}</a></li>
+                <li><a href="#contactus" style="font-size: 1rem; color: #009688; margin-top: 15px;">{{navContact}}</a></li>
               </ul>
           </div>
         </div>
@@ -33,44 +36,50 @@
 
 
   <!-- Start of Modal Structure "About"-->
+<div ng-controller="modalCtrl">
   <div id="modalAbout" class="modal">
     <div class="modal-content">
-      <p class="center-align">About Us</p>
-      <p class="center-align">This application is made for acme company</p>
-      <p class="center-align">Build using Html/CSS for front end and ROR and Javascript for Back end</p>
-      <p class="center-align">Submitted By: Gonzales, Joshua Taylor and Lapida, John Red P.</p>
+      <p class="center-align">{{aboutContent1}}</p>
+      <p class="center-align">{{aboutContent2}}</p>
+      <p class="center-align">{{aboutContent3}}</p>
+      <p class="center-align">{{aboutContent4}}</p>
     </div>
   </div>
+</div>
 
 
   <!-- Start welcome (banner,caption,button)-->
+  <div ng-controller="welcomeCtrl">
   <div class="welcome_banner" style="padding:0px 30px 0px 30px;">
     <ul class=" #ffffff white"  style=" height: 600px; ">
       <li>
         <img class="responsive-img" src="images/welcomebg2.png" style="width: 100%; height: 600px; "> <!-- random image -->
         <div class="caption center-align white-text" style="margin-top: -450px;">
-          <h3 style="font-weight: bold;">Welcome to ACME Application</h3>
-          <h5 class="light grey-text text-lighten-3">Pick a page and post something</h5>
-          <h5 class="light grey-text text-lighten-3">using our application.</h5>
+          <h3 style="font-weight: bold;">{{welcomeContent1}}</h3>
+          <h5 class="light grey-text text-lighten-3">{{welcomeContent2}}</h5>
+          <h5 class="light grey-text text-lighten-3">{{welcomeContent3}}</h5>
           <br><br> <br>
           <fb:login-button 
                 scope="public_profile,email,manage_pages,publish_pages,publish_actions"
                 onlogin="checkLoginState();">
               </fb:login-button>
-           <a href="acme_app.html"> <button class="btn waves-effect waves-light btn-large pulse" type="button" name="action">Try it now!
+           <a href="acme_app.html"> <button class="btn waves-effect waves-light btn-large pulse" type="button" name="action">{{welcomeButton}}
               <i class="material-icons right">send</i>
+          
+           
             </button></a> 
         </div>
       </li>
     </ul>
   </div>
-
-      
+  </div>
+  
+  <div ng-controller="stepCtrl">
   <div class="row" style="padding:0px 80px 0px 80px;">
     <div class="col xl5 l12 m12 s12 center-align" style="margin-top: 13%;">
-      <span col l6 m12 s12 style="font-size: 1.5rem; color: #009688; ">GETTING STARTED</span>
-      <p col l6 m12 s12 style="font-size: 1rem;  ">You can post in any page by using this application with only few steps.</p>
-      <p col l6 m12 s12 style="font-size: 1rem;  ">Go to the Website. Try it. Login via Facebook. Fill up the form. Post</p>
+      <span col l6 m12 s12 style="font-size: 1.5rem; color: #009688; ">{{stepContent1}}</span>
+      <p col l6 m12 s12 style="font-size: 1rem;  ">{{stepContent2}}</p>
+      <p col l6 m12 s12 style="font-size: 1rem;  ">{{stepContent3}}</p>
     </div>
 
     <div class="col xl7 l12 m12 s12" >
@@ -84,39 +93,40 @@
       </div>
     </div>
   </div>
-      
+  </div>    
 <div class="section"></div>
 
+<div ng-controller="contactCtrl">
   <div class="row center " id="contactus" style="padding:0px 15px 0px 15px;">
     <div class="col s12 " >
       <div class="card #ffffff white z-depth-0 " style="padding: 0px; margin: 0px;">
         <div class="container card-content">
           <div class="section"></div>
-              <span id="contact" class="card-title">Contact Us</span>
+              <span id="contact" class="card-title">{{contactTitle}}</span>
 <div class="section"></div>
 
   <div class="row center-align">
     <div class="input-field col l6 offset-l3 m12 s12 ">
       <input id="name" type="text" class="validate">
-      <label for="name">Name</label>
+      <label for="name">{{contactName}}</label>
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col l6 offset-l3 m12 s12 ">
       <input id="email" type="email" class="validate">
-      <label for="email">Email</label>
+      <label for="email">{{contactEmail}}</label>
       </div>
   </div>
 
   <div class="row">
     <div class="input-field col l6 offset-l3 m12 s12">
       <input id="number" type="text" class="validate">
-      <label for="number">Phone Number</label>
+      <label for="number">{{contactNumber}}</label>
     </div>
   </div>
 
-    <button class="btn waves-effect waves-light col l6 offset-l3 m12 s12 " type="button" name="action">Send</button>
+    <button class="btn waves-effect waves-light col l6 offset-l3 m12 s12 " type="button" name="action">{{contactButton}}</button>
   </div>
             
   
@@ -129,20 +139,21 @@
     </div>
   </div>
 </div>
+</div>
 
-
+<div ng-controller="mediaCtrl">  
   <div id="footer" class="page-footer #ffffff white z-depth-1 #455a64 blue-grey darken-2">
     <div class="card-content">
       <p class="center">Follow us:</p>
         <div class="row container center">
           <div class="col xl4 l12 m12 s12"> 
-            <a href="https://www.facebook.com/ "> <img class="responsive-img" src="images/fb.png" style="height: 30px; width: 30px;">www.acebook.com/acmecompany</a>
+            <a href="https://www.facebook.com/ "> <img class="responsive-img" src="images/fb.png" style="height: 30px; width: 30px;">{{mediaFb}}</a>
           </div>
           <div class="col xl4 l12 m12 s12"> 
-            <a href="https://www.twitter.com/"><img class="responsive-img" src="images/insta.png" style="height: 30px; width: 30px;">www.instagram.com/acmecompany</a>
+            <a href="https://www.twitter.com/"><img class="responsive-img" src="images/insta.png" style="height: 30px; width: 30px;">{{mediaInstagram}}</a>
           </div>
           <div class="col xl4 l12 m12 s12"> 
-            <a href="https://www.instagram.com/"><img class="responsive-img" src="images/twitter.png" style="height: 30px; width: 30px;">www.twitter.com/acmecompany</a>
+            <a href="https://www.instagram.com/"><img class="responsive-img" src="images/twitter.png" style="height: 30px; width: 30px;">{{mediaTwitter}}</a>
           </div>
         </div>
 
@@ -158,6 +169,7 @@
             
     </div>
   </div>
+</div>
 
 
 
