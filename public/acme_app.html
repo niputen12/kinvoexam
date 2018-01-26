@@ -198,7 +198,7 @@
                                           'post', { 'message' : message,
                                           access_token: resp.access_token }, function(res){
                                            // console.log('msg',res);
-                                             if(done=="false" && !res.error)  {
+                                             if(!res.error)  {
                                                      FB.api(
                                                       "/"+id+"/private_replies",
                                                       "POST",
