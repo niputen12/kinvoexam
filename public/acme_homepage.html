@@ -1,70 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <title>
-    ACME Company
-  </title>
- 
-        
+  <title>ACME Company</title>
         <link rel= "stylesheet" type= "text/css" href= "css/materialize.css" >
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type= "text/javascript" src= "js/jquery.min.js"> </script>
         <script type= "text/javascript" src= "js/materialize.js"> </script>
         <script type= "text/javascript" src= "js/materialize.min.js"> </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="images/acmelogov4.png">
 </head>
+
+<!--BODY -->
 <body class="#eeeeee grey lighten-3"> 
 
+  <!--Start of header -->
   <div id="header">
-
     <div class="navbar-fixed" style="height: 90px;">
-    <nav style="height: 90px;">
-      <div class="nav-wrapper #ffffff white" style="height: 90px;">
-        
-        <div class="container">
-      <a href="#" style="font-size: 3rem; color: #009688;"><img class="responsive-img" src="images/acmelogov4.png" style="height: 90px; width: 150px;">
-       
-      <ul id="nav-mobile" class="right">
-      
-        <li><a  href="#modalAbout" class="modal-trigger" style="font-size: 1rem; color: #009688; margin-top: 15px;">About</a></li>
+      <nav style="height: 90px;">
+        <div class="nav-wrapper #ffffff white" style="height: 90px;">
+          <div class="container">
+            <a href="#" style="font-size: 3rem; color: #009688;"><img class="responsive-img" src="images/acmelogov4.png" style="height: 90px; width: 150px;">
+              <ul id="nav-mobile" class="right">
+                <li><a  href="#modalAbout" class="modal-trigger" style="font-size: 1rem; color: #009688; margin-top: 15px;">About</a></li>
+                <li><a href="#contactus" style="font-size: 1rem; color: #009688; margin-top: 15px;">Contact us</a></li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>   
 
 
-
-
-        <li><a href="#contactus" style="font-size: 1rem; color: #009688; margin-top: 15px;">Contact us</a></li>
-      </ul>
-      </div>
-      </div>
-    </nav>
-  </div>
-    
-
-  
- </div>   
-
-
-
-  <!-- Modal Structure -->
+  <!-- Start of Modal Structure "About"-->
   <div id="modalAbout" class="modal">
     <div class="modal-content">
-     
       <p class="center-align">About Us</p>
       <p class="center-align">This application is made for acme company</p>
       <p class="center-align">Build using Html/CSS for front end and ROR and Javascript for Back end</p>
-       <p class="center-align">Submitted By: Gonzales, Joshua Taylor and Lapida, John Red P.</p>
-
-
+      <p class="center-align">Submitted By: Gonzales, Joshua Taylor and Lapida, John Red P.</p>
     </div>
-    
   </div>
 
 
-
+  <!-- Start welcome (banner,caption,button)-->
   <div class="welcome_banner" style="padding:0px 30px 0px 30px;">
     <ul class=" #ffffff white"  style=" height: 600px; ">
       <li>
-        <img class="responsive-img" src="images/welcomebg.png" style="width: 100%; height: 600px; "> <!-- random image -->
+        <img class="responsive-img" src="images/welcomebg2.png" style="width: 100%; height: 600px; "> <!-- random image -->
         <div class="caption center-align white-text" style="margin-top: -450px;">
           <h3 style="font-weight: bold;">Welcome to ACME Application</h3>
           <h5 class="light grey-text text-lighten-3">Pick a page and post something</h5>
@@ -77,142 +60,104 @@
            <a href="acme_app.html"> <button class="btn waves-effect waves-light btn-large pulse" type="button" name="action">Try it now!
               <i class="material-icons right">send</i>
             </button></a> 
-
         </div>
-
       </li>
     </ul>
-
   </div>
 
       
-
- 
-
-
   <div class="row" style="padding:0px 80px 0px 80px;">
+    <div class="col xl5 l12 m12 s12 center-align" style="margin-top: 13%;">
+      <span col l6 m12 s12 style="font-size: 1.5rem; color: #009688; ">GETTING STARTED</span>
+      <p col l6 m12 s12 style="font-size: 1rem;  ">You can post in any page by using this application with only few steps.</p>
+      <p col l6 m12 s12 style="font-size: 1rem;  ">Go to the Website. Try it. Login via Facebook. Fill up the form. Post</p>
+    </div>
 
-
-          
-   
-
-            <div class="col xl5 l12 m12 s12 center-align" style="margin-top: 13%;">
-              
-              <span col l6 m12 s12 style="font-size: 1.5rem; color: #009688; font-weight: bold;">GETTING STARTED</span>
-              <p col l6 m12 s12 style="font-size: 1rem;  opacity: 0.5;">You can post in any page by using this application with only few steps.</p>
-              <p col l6 m12 s12 style="font-size: 1rem;  opacity: 0.5;">Go to the Website. Try it. Login via Facebook. Fill up the form. Post</p>
-        
-
-              
-          
-            </div>
-
-
- 
-          <div class="col xl7 l12 m12 s12" >
-            <div class="section center-align">
-              <div class="carousel carousel-slider" >
-              <a class="carousel-item" href="#one!"><img class="responsive-img"  src="https://lh3.googleusercontent.com/EdvD2bMnhxYlY4voD87zLtC-Thy5X8KvFT6A6FmcoFiy3AV9rgfQxuKPKkUXdDiCNwCjradBQhWybZdfXqtP5nKyPJBnZFKDOvtJ-bJVoIfNPw9gtliHIz9vxPo1BPu3x9juGm13"><br><br><p class="black-text"></p></a>
-              <a class="carousel-item" href="#two!"><img class="responsive-img"  src="https://lh3.googleusercontent.com/WafVpK8QUaMhxwRiyL-2kYavfbZeDWi4lYTuCveY2OwgnAHGghaCf3_gkP1InRMq9N-gSZhpYkLUm2UbyePmXy4KfoHJncaO0M_lMKHzca3WZrBlmA1A5NRFPSo3pjlDLHBA7nb6"></a>
-              <a class="carousel-item" href="#three!"><img class="responsive-img"  src="https://lh3.googleusercontent.com/crUqSvOEN_tQwlbafeBKx6LjtB_R1FXPfFRrmegoMRfsxCaoPUev-ST_Lc4LoE5BkSgywcBITDCnLsFpmdOZkDuN2zPKA4QbDcQra7sF0d-ILUbEnaAs7r_s_D4RegdFON1e_yix"></a>
-            </div>
-            </div>
-          </div>
-
-
-            
+    <div class="col xl7 l12 m12 s12" >
+      <div class="section center-align">
+        <div class="carousel carousel-slider" >
+          <a class="carousel-item" href="#one!"><img class="responsive-img"  src="images/carousel_pic4.png"><br><br></a>
+          <a class="carousel-item" href="#two!"><img class="responsive-img"  src="images/carousel_pic1.png"></a>
+          <a class="carousel-item" href="#three!"><img class="responsive-img"  src="images/carousel_pic2.png"></a>
+          <a class="carousel-item" href="#three!"><img class="responsive-img"  src="images/carousel_pic3.png"></a>
+        </div>
+      </div>
+    </div>
   </div>
-
-  
-            
-
-      
-       
       
 <div class="section"></div>
 
-      <div class="row center " id="contactus" style="padding:0px 15px 0px 15px;">
-        <div class="col s12 " >
-          <div class="card #ffffff white z-depth-0 " style="padding: 0px; margin: 0px;">
-            <div class="container card-content">
-              <div class="section"></div>
-
+  <div class="row center " id="contactus" style="padding:0px 15px 0px 15px;">
+    <div class="col s12 " >
+      <div class="card #ffffff white z-depth-0 " style="padding: 0px; margin: 0px;">
+        <div class="container card-content">
+          <div class="section"></div>
               <span id="contact" class="card-title">Contact Us</span>
-           
-              <div class="section"></div>
+<div class="section"></div>
 
-              <div class="row center-align">
-        <div class="input-field col l6 offset-l3 m12 s12 ">
-          <input id="name" type="text" class="validate">
-          <label for="name">Name</label>
-        </div>
+  <div class="row center-align">
+    <div class="input-field col l6 offset-l3 m12 s12 ">
+      <input id="name" type="text" class="validate">
+      <label for="name">Name</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col l6 offset-l3 m12 s12 ">
+      <input id="email" type="email" class="validate">
+      <label for="email">Email</label>
       </div>
+  </div>
 
-       <div class="row">
-        <div class="input-field col l6 offset-l3 m12 s12 ">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
+  <div class="row">
+    <div class="input-field col l6 offset-l3 m12 s12">
+      <input id="number" type="text" class="validate">
+      <label for="number">Phone Number</label>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="input-field col l6 offset-l3 m12 s12">
-          <input id="number" type="text" class="validate">
-          <label for="number">Phone Number</label>
-        </div>
-      </div>
-
-      <button class="btn waves-effect waves-light col l6 offset-l3 m12 s12 " type="button" name="action">Send
-              
-            </button>
-            </div>
+    <button class="btn waves-effect waves-light col l6 offset-l3 m12 s12 " type="button" name="action">Send</button>
+  </div>
             
   
             
-         <div class="section"></div>
-         <div class="section"></div>
+<div class="section"></div>
+<div class="section"></div>
 <div class="section"></div>
 <div class="section"></div>
         
-          </div>
-      
-        </div>
-      </div>
-
-
-
-
-<div id="footer" class="page-footer #ffffff white z-depth-1 #455a64 blue-grey darken-2">
-            <div class="card-content">
-    <p class="center">Follow us:</p>
-  <div class="row container center">
-   <div class="col xl4 l12 m12 s12"> 
-    <a href="https://www.facebook.com/ "> <img class="responsive-img" src="images/fb.png" style="height: 30px; width: 30px;">www.acebook.com/acmecompany</a>
-   </div>
-    <div class="col xl4 l12 m12 s12"> 
-    <a href="https://www.twitter.com/"><img class="responsive-img" src="images/insta.png" style="height: 30px; width: 30px;">www.instagram.com/acmecompany</a>
-   </div>
-    <div class="col xl4 l12 m12 s12"> 
-    <a href="https://www.instagram.com/"><img class="responsive-img" src="images/twitter.png" style="height: 30px; width: 30px;">www.twitter.com/acmecompany</a>
-   </div>
-
-
+    </div>
   </div>
+</div>
+
+
+  <div id="footer" class="page-footer #ffffff white z-depth-1 #455a64 blue-grey darken-2">
+    <div class="card-content">
+      <p class="center">Follow us:</p>
+        <div class="row container center">
+          <div class="col xl4 l12 m12 s12"> 
+            <a href="https://www.facebook.com/ "> <img class="responsive-img" src="images/fb.png" style="height: 30px; width: 30px;">www.acebook.com/acmecompany</a>
+          </div>
+          <div class="col xl4 l12 m12 s12"> 
+            <a href="https://www.twitter.com/"><img class="responsive-img" src="images/insta.png" style="height: 30px; width: 30px;">www.instagram.com/acmecompany</a>
+          </div>
+          <div class="col xl4 l12 m12 s12"> 
+            <a href="https://www.instagram.com/"><img class="responsive-img" src="images/twitter.png" style="height: 30px; width: 30px;">www.twitter.com/acmecompany</a>
+          </div>
+        </div>
 
 
              
   <footer  class="page-footer  N/A transparent Bottom ">
-  <div class="footer-copyright #455a64 blue-grey darken-2">
-    <div class="container center white-text" style="opacity: 0.3; font-size: 0.9rem;">
+    <div class="footer-copyright #455a64 blue-grey darken-2">
+      <div class="container center white-text" style="opacity: 0.3; font-size: 0.9rem;">
       © 2018 ACME COMPANY
+      </div>
+    </div>
+  </footer>
+            
     </div>
   </div>
-</footer>
-            
-            </div>
-            
-        
-          </div>
 
 
 
@@ -226,28 +171,16 @@
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.carousel.carousel-slider').carousel({fullWidth: true});
     autoplay()   
-function autoplay() {
+    function autoplay() {
     $('.carousel').carousel('next');
     setTimeout(autoplay, 4500);
-}
-
-  });
-
-        $(document).ready(function(){
-      $('.slider').slider();
+                  } });
+    $(document).ready(function(){
+    $('.slider').slider();
     });
-        
-
 </script>
-  
-</script>
-
 <script>
-
   $(document).ready(function(){
-    $('.modal').modal();
-
-
-                  
+    $('.modal').modal();           
   });
 </script>
