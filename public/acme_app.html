@@ -45,10 +45,7 @@
         <script type= "text/javascript" src= "js/materialize.min.js"> </script>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-     
-
-</head>
+      </head>
 <body>
 
 <div class="loginfb">
@@ -71,21 +68,13 @@
          <div class="section"></div>
          <div class="section"></div>
 <div class="section"></div>
-<div class="section"></div>
-        
+<div class="section"></div>        
           </div>
         </div>
       </div>
    </div>   
-
-
-
-
-
-   <div class="fillupPage">
-     
+   <div class="fillupPage">     
      <div id="header">
-
     <div class="navbar-fixed" style="height: 90px;">
     <nav style="height: 90px;">
       <div class="nav-wrapper #ffffff white" style="height: 90px;">
@@ -110,10 +99,7 @@
       </div>
     </nav>
  </div>    
- </div>  
-
-
-      
+ </div>        
         <div class="section"></div>
         <div class="row center " id="contactus" style="padding:0px 15px 0px 15px;">
         <div class="col xl7 l12 m12 s12 offset-xl3">
@@ -144,14 +130,7 @@
         </div>
       </div>
     </form>
-  </div>
-      <!-- <div class="row center-align" style="margin-top: -30px;">
-        <div class="input-field col l12 m12 s12 ">
-           
-  <div class="chips chips-placeholder" id="wtfchips"></div>
-<label for="textarea1" class="black-text">Tag</label>
-        </div>
-      </div>   -->
+  </div>    
           <div class="row" style="margin-top: -25px;">
     <form class="col l12 m12 s12">
       <div class="row">
@@ -175,10 +154,8 @@
           <label for="comment" class="black-text">Page's Comment Reply</label>
         </div>
       </div>
-      <button class="btn waves-effect waves-light col l12 m12 s12 send" type="button" name="action">Send
-              
-            </button>
-             <button class="btn waves-effect waves-light col l12 m12 s12 test" type="button" name="action">test
+      <button class="btn waves-effect waves-light col l12 m12 s12 send" type="button" name="action">Send              
+            </button>            
             </div>           
          <div class="section"></div>
          <div class="section"></div>        
@@ -195,17 +172,11 @@
 </footer>
 </body>
 </html>
-<script type="text/javascript">
-    $(document).ready(function() {
-    //$('select').material_select();
 
-  });
-</script>
-<script>
-
-  
-  setInterval(getPost, 10000)
+<script> 
+  setInterval(getPost, 6000)
   var counter ;
+
   function getPost()
   {
     var page_id = $('.pages option:selected').val();
@@ -230,50 +201,45 @@
                       //console.log('wat', response);
                       if (response && !response.error) {
 
-                        for ( j = 0 ; j < response.data.length ; j++)
-                        {
-                            console.log('mensahe',response.data[j].message)
-                          if(response.data[j].message === msg)
-                          {
+                        for ( j = 0 ; j < response.data.length ; j++){
+                            //console.log('mensahe',response.data[j].message)
+                          if(response.data[j].message === msg){
                              var id = response.data[j].id
-                            
-
                              FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
-                              if(resp.access_token) {
-                           
-                                  console.log('wat',id);
-
-                               FB.api('/'+id+'/comments', 
-                                'post', { 'message' : message,
-                                access_token: resp.access_token }, function(res){
-                                  console.log('msg',res);
-                                     $.ajax({
-                                          url: 'http://localhost:3000/updatePosts/'+pid,
-                                          type: 'PATCH',
-                                          data: {done: 'true',       _method: "PATCH"},
-                                          success: function(res) {
-                                        console.log('huwat',res);
-                                          }
-                                  });
-                                    //   FB.api(
-                                    //     "/"+id+"/private_replies",
-                                    //     "POST",
-                                    //     {
-                                    //       id: id,
-                                    //       message: pmmsg,
-                                    //       access_token: resp.access_token
-                                    //     },
-                                    //     function (response) {
-                                    //       if (response && !response.error) {
-                                    //         console.log('is this for real?');
-                                    //       }
-                                    //       else{
-                                    //         console.log(response);
-                                    //       }
-                                    //     }
-                                    // );
-                                }); 
-                 
+                              if(resp.access_token) {                           
+                                 // console.log('wat',id);
+                                         FB.api('/'+id+'/comments', 
+                                          'post', { 'message' : message,
+                                          access_token: resp.access_token }, function(res){
+                                           // console.log('msg',res);
+                                             if(done=="false")  {
+                                                     FB.api(
+                                                      "/"+id+"/private_replies",
+                                                      "POST",
+                                                      {
+                                                        id: id,
+                                                        message: pmmsg,
+                                                        access_token: resp.access_token
+                                                      },
+                                                      function (response) {
+                                                        if (response && !response.error) {
+                                                          //console.log('is this for real?');
+                                                        }
+                                                        else{
+                                                          //console.log(response);
+                                                        }
+                                                      }
+                                                  );
+                                               }
+                                               $.ajax({
+                                                    url: 'http://localhost:3000/updatePosts/'+pid,
+                                                    type: 'PATCH',
+                                                    data: {done: 'true',       _method: "PATCH"},
+                                                    success: function(res) {
+                                                      console.log('huwat',res);
+                                                    }
+                                                    });                                               
+                                             });                            
                                       }
                                       else{
                                         console.log(resp);
@@ -281,41 +247,7 @@
                                   });
                           }
                            
-                        }
-
-                          // var count = Object.keys(response.data).length;
-                          // for (j = 0; j <count ; j++)
-                          // {
-                          //   if(response.data[j].message === msg)
-                          //   {    
-                      
-                          //      FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
-                          //         console.log('before tragedy' ,j)
-                                 
-                          //      if(resp.access_token && response.data[j].id !== null) {
-                          //          console.log('WOW GALENG',response.data[j].id);
-                          //         FB.api('/'+response.data[j].id+'/comments', 
-                          //         'post', { 'message' : 'test',
-                          //         access_token: resp.access_token }, function(res){ 
-                          //         console.log('OK?',res);                                
-                          //         }); 
-
-                          //               }
-                          //               else{
-                          //                 console.log(resp);
-                          //               }                                         
-                          //     });                                     
-                         
-                          //   }
-                          // }
-
-
-                        
-
-                      
-
-
-
+                        }  
                         
                           }
                       else {
@@ -324,9 +256,8 @@
                       }
                     }
                 );
-
           }
-           console.log('got it',responsee);
+           //console.log('got it',responsee);
          
     });
   }
@@ -335,10 +266,8 @@
 
 <script>
   $('.send').click(function(){
-
       var page_id = $('.pages option:selected').val();
-      var message = $('.caption').val();
-   
+      var message = $('.caption').val();   
     FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
         if(resp.access_token) {
             FB.api('/' + page_id + '/feed',
@@ -362,40 +291,9 @@
                   }
                   else{
                     alert('Error');
-                  }
-                   
-                    // var asd = 2;
-                    // if(asd ==1 )
-                    // {
-                    //    FB.api('/'+response.id+'/comments', 
-                    //   'post', { 'message' : 'test',
-                    //   access_token: resp.access_token }, function(res){
-                    //     console.log('msg',res);
-                    //   }); 
-                    // }
-                  
-                   
+                  } 
             });
-           
         }
-//     FB.api(
-//     "/370721373035349_1525595267547948/private_replies",
-//     "POST",
-//     {
-//       id: '1525595267547948_1525595737547901',
-//       message: 'test',
-//       access_token: resp.access_token
-
-//     },
-//     function (response) {
-//       if (response && !response.error) {
-//         console.log('pm' , response);
-//       }else {
-//         console.log('pm err', response);
-//       }
-//     }
-// );
-
     });
   
 
@@ -405,44 +303,6 @@
       location.href= "acme_homepage.html";
     })
   })
-
-  $('.test').click(function(){
-     var page_id = $('.pages option:selected').val();
-      FB.api(
-                    "/370721373035349_1526601480780660/comments",
-                    {
-                        "summary": true,
-                        "filter": "toplevel"
-                    },
-                    function (response) {
-                      if (response && !response.error) {
-                          FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
-                           if(resp.access_token) {
-                              console.log('getcomments',response)
-
-                         FB.api('/'+response.data[0].id+'/comments', 
-                          'post', { 'message' : 'test',
-                          access_token: resp.access_token }, function(res){
-                            console.log('msg',res);
-                          }); 
-           
-                                }
-                            });
-
-                      
-
-
-
-                      }
-                      else {
-                        console.log('err getcomments',response)
-                      
-                      }
-                    }
-                );
-
-
-  });
 </script>
 <script>
   window.fbAsyncInit = function() {
@@ -451,14 +311,12 @@
       cookie     : true,
       xfbml      : true,
       version    : 'v2.11'
-    });
-      
+    });      
       FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
       
   };
-
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
@@ -467,13 +325,11 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
     console.log('loginstate:',response);
     statusChangeCallback(response);
   });
-
 }
 
   function statusChangeCallback(response)
@@ -483,8 +339,7 @@ function checkLoginState() {
       $(".loginfb").hide();
        $(".fillupPage").show();
       console.log('Connected',response);     
-      getPage();
-      //location.href = "fill-up_page.html";
+      getPage();     
     }
     else{
       console.log('Not Connected');
@@ -495,8 +350,6 @@ function checkLoginState() {
 
 function getPage()
 {
- 
-
   var opt = false;
 
   console.log('pages retrieved');
@@ -506,74 +359,13 @@ function getPage()
     for(i=0 ; i < response.data.length ; i++){
         var newOption = $('<option>');
       newOption.attr('value', response.data[i].id).text(response.data[i].name);
-      console.log('pahina',response.data[i].name);     
-     // opt += "<option value='" + response.data[i].id + "'>" + response.data[i].name + "</option>";
+      console.log('pahina',response.data[i].name);    
       $('.pages').append(newOption);  
-      }
-       //$('.pages').append(newOption);  
+      }   
       console.log('wew'); 
       $('.pages').material_select();
-       // bobomaterialize();
-
    });
 }
-// function bobomaterialize(){
-   
-//       $('select').material_select();
-
-// }
-// function postpage(){
-//   console.log('clicked');
-//  FB.api(
-//     "/370721373035349/feed",
-//     "POST",
-//     {
-//         "message": "KINVO TEST MESSAGE"
-//     },
-//     function (response) {
-//       console.log('post',response);
-//       if (response && !response.error) {
-//         console.log('post',response);
-//       }
-//     }
-// );
-// }
-
-// function postToPage() {
-//     var page_id = '370721373035349';
-//     var message = 
-//     FB.api('/' + page_id, {fields: 'access_token'}, function(resp) {
-//         if(resp.access_token) {
-//             FB.api('/' + page_id + '/feed',
-//                 'post',
-//                 { message: "Kinvo NEW Message", access_token: resp.access_token }
-//                 ,function(response) {
-//                     console.log('postedToPage',response);
-//             });
-           
-//         }
-//     FB.api(
-//     "/370721373035349_1525595267547948/private_replies",
-//     "POST",
-//     {
-//       id: '1525595267547948_1525595737547901',
-//       message: 'test',
-//       access_token: resp.access_token
-
-//     },
-//     function (response) {
-//       if (response && !response.error) {
-//         console.log('pm' , response);
-//       }else {
-//         console.log('pm err', response);
-//       }
-//     }
-// );
-
-//     });
-//   }
-
-
     function pageposts()
     {
           FB.api(
@@ -587,8 +379,7 @@ function getPage()
           }
         }
     );
-
-          FB.api(
+    FB.api(
     "/370721373035349/feed",
     function (response) {
       if (response && !response.error) {
@@ -599,8 +390,6 @@ function getPage()
     }
 
 );
-
-
      FB.api(
     "/370721373035349_1525595267547948/comments",
     {
@@ -616,45 +405,8 @@ function getPage()
       
       }
     }
-);
-  
+);  
     }
-
-    //  FB.api('/' + page_id+'/photos', {fields: 'access_token'}, function(resp) {
-    //     if(resp.access_token) {
-    //         FB.api('/' + page_id+'/photos'+'/feed',
-    //             'post',
-    //             { message: "Kinvo test Message", 
-    //             access_token: resp.access_token,
-    //             url: pic 
-    //           }
-    //             ,function(response) {
-    //                 console.log('postedToPage',response);
-    //         });
-    //     }
-    // });
-     // FB.api(
-                
-//                 '/'+page_id+'/photos',
-//                 'POST',
-//                 {
-//                     'access_token': ,
-//                     'message': 'Beer Description',
-//                     'url': pic
-//                 },
-//                 function (response) {
-//                   if (response && !response.error) {
-//                     /* handle the result */
-//                     console.log('success imageg posting',response);
-//                   } else {
-//                     console.log('error img posting:',response);
-//                   }
-//                 }
-//             );              
-// }
-
-
-
 </script>
 
  <script type="text/javascript">
