@@ -166,7 +166,7 @@
   {
 
     var page_id = $('.pages option:selected').val();
-    $.get(local+'/getPosts', function(responsee){
+    $.get(deploy+'/getPosts', function(responsee){
         counter = Object.keys(responsee.data).length;
           
        for(i = 0 ; i < counter ; i++)
@@ -218,7 +218,7 @@
                                                   );
                                                }
                                                $.ajax({
-                                                    url: local+'/updatePosts/'+pid,
+                                                    url: deploy+'/updatePosts/'+pid,
                                                     type: 'PATCH',
                                                     data: {done: 'true',       _method: "PATCH"},
                                                     success: function(res) {
@@ -251,6 +251,8 @@
 </script>
 
 <script>
+    var local = 'http://localhost:3000';
+  var deploy = 'https://kinvoexam.herokuapp.com';
   $('.send').click(function(){
       var page_id = $('.pages option:selected').val();
       var message = $('.caption').val();   
@@ -264,7 +266,7 @@
                   if(response && !response.error)
                   {
                      console.log('postedToPage',response);
-                    $.post(local+'/savePosts', {
+                    $.post(deploy+'/savePosts', {
                       postId: response.id,
                       tags: $('.tags').val(),
                       reply: $('.reply').val(),
